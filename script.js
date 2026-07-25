@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
 			msg.textContent = 'Thanks! Your request has been noted. We will contact you soon.';
 			msg.style.color = '#aaf';
 			form.reset();
+			// small celebratory micro-animation
+			msg.classList.add('pulse');
+			setTimeout(()=> msg.classList.remove('pulse'), 1600);
 		})
 	}
 
@@ -44,4 +47,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		t.addEventListener('mouseenter', ()=> t.style.transform='scale(1.03)');
 		t.addEventListener('mouseleave', ()=> t.style.transform='');
 	})
+  
+	// Scroll reveal
+	const observer = new IntersectionObserver((entries)=>{
+		entries.forEach(entry=>{
+			if(entry.isIntersecting){
+				entry.target.classList.add('show');
+			}
+		})
+	},{threshold:0.12});
+	document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+	// Sticky contact CTA behaviour
+	const cta = document.getElementById('contactCTA');
+	if(cta){
+		// small bounce when scrolled past hero
+		const hero = document.querySelector('.hero');
+		const heroObs = new IntersectionObserver((entries)=>{
+			entries.forEach(e=>{
+				if(!e.isIntersecting) cta.classList.add('visible');
+				else cta.classList.remove('visible');
+			})
+		}, {threshold:0.05});
+		if(hero) heroObs.observe(hero);
+	}
 })

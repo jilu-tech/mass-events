@@ -1,39 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mass Events</title>
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<header>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="brand" href="#home"><img src="favicon.svg" alt="Mass Events" class="logo"/><span class="brand-text">MASS EVENTS</span></a>
+            <button class="nav-toggle" aria-label="Open menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Audio & Lighting</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#packages">Hire Packages</a></li>
+                <li><a href="#quote">Quote</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<h1>MASS EVENTS</h1>
+    <header id="home" class="hero">
+        <div class="hero-inner">
+            <h1 class="hero-title">Professional Audio & Lighting</h1>
+            <p class="hero-sub">Sound systems • Stage lighting • Event production</p>
+            <a class="btn" href="#quote">Request a Quote</a>
+        </div>
+    </header>
 
-<p>Professional Audio, Lighting & Event Production</p>
+    <main>
+        <section id="services" class="section services">
+            <h2 class="section-title">Audio & Lighting Services</h2>
+            <div class="cards">
+                <article class="card">
+                    <h3>Live Sound</h3>
+                    <p>PA systems, mixing, monitors and experienced FOH engineers.</p>
+                </article>
+                <article class="card">
+                    <h3>Stage Lighting</h3>
+                    <p>Intelligent moving heads, washes, LED & atmospheric effects.</p>
+                </article>
+                <article class="card">
+                    <h3>Production</h3>
+                    <p>Full event production, rigging, trussing and technical management.</p>
+                </article>
+                <article class="card">
+                    <h3>DJ & Playback</h3>
+                    <p>DJ setup, wireless mics and playback solutions for any event.</p>
+                </article>
+            </div>
+        </section>
 
-</header>
+        <section id="gallery" class="section gallery">
+            <h2 class="section-title">Equipment Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="thumb" data-title="Line Array Speaker"></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="thumb" data-title="Lighting Rig"></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="thumb" data-title="Mixing Desk"></div>
+                </div>
+                <div class="gallery-item">
+                    <div class="thumb" data-title="Trussing & Stage"></div>
+                </div>
+            </div>
+        </section>
 
-<section>
+        <section id="packages" class="section packages">
+            <h2 class="section-title">Hire Packages</h2>
+            <div class="packages-grid">
+                <div class="package">
+                    <h3>Basic</h3>
+                    <p>PA small, 2 wireless mics, basic lighting</p>
+                </div>
+                <div class="package recommended">
+                    <h3>Pro</h3>
+                    <p>Line array PA, FOH engineer, intelligent lighting</p>
+                </div>
+                <div class="package">
+                    <h3>Full Production</h3>
+                    <p>Full rigging, truss, multiple lighting desks and crew</p>
+                </div>
+            </div>
+        </section>
 
-<h2>Welcome</h2>
+        <section id="quote" class="section quote">
+            <h2 class="section-title">Request a Quote</h2>
+            <form id="quoteForm" class="form">
+                <div class="form-row">
+                    <label for="name">Your name</label>
+                    <input id="name" name="name" required />
+                </div>
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" required />
+                </div>
+                <div class="form-row">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" />
+                </div>
+                <div class="form-row">
+                    <label for="date">Event date (approx)</label>
+                    <input id="date" name="date" type="date" />
+                </div>
+                <div class="form-row">
+                    <label for="details">Event details</label>
+                    <textarea id="details" name="details" rows="4" required></textarea>
+                </div>
+                <div class="form-row form-actions">
+                    <button type="submit" class="btn">Send Request</button>
+                    <div id="formMsg" class="form-msg" aria-live="polite"></div>
+                </div>
+            </form>
+        </section>
 
-<p>
-We provide professional sound systems, stage lighting,
-DJ equipment, trussing and event production throughout Australia.
-</p>
+        <section id="contact" class="section contact">
+            <h2 class="section-title">Contact</h2>
+            <p>Phone: <a href="tel:+61234567890">(02) 1234 5678</a></p>
+            <p>Email: <a href="mailto:info@massevents.example">info@massevents.example</a></p>
+            <p>Operating across Australia. We travel to your event.</p>
+        </section>
+    </main>
 
-</section>
+    <footer class="site-footer">
+        <div>© 2026 MASS EVENTS</div>
+        <div class="credit">Built with care</div>
+    </footer>
 
-<footer>
-
-<p>© 2026 MASS EVENTS</p>
-
-</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>

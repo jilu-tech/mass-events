@@ -35,7 +35,17 @@ body{
 	.nav-links a:hover{color:#fff;background:var(--glass)}
 
 	.hero{padding:80px 20px;text-align:center;background:radial-gradient(circle at 50% 20%, rgba(255,45,184,0.08), transparent 20%), linear-gradient(180deg, rgba(154,36,255,0.03), transparent);}
-	.hero-inner{max-width:900px;margin:0 auto}
+	.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:2}
+	.hero{position:relative;overflow:visible}
+
+	/* integrated logo as blended background (melt-in effect) */
+	.hero::before{content:'';position:absolute;inset:0;display:block;background-image:var(--site-hero-logo);background-repeat:no-repeat;background-position:center 28%;background-size:60% auto;opacity:0;pointer-events:none;filter:blur(14px) saturate(1.1);mix-blend-mode:screen;transition:opacity .7s ease, transform .7s ease;z-index:1}
+	.hero.has-logo::before{opacity:0.28;transform:scale(1)}
+	.hero.has-logo{background-image: radial-gradient(circle at 50% 20%, rgba(255,45,184,0.06), transparent 20%), linear-gradient(180deg, rgba(154,36,255,0.03), transparent);}
+
+	.hero-logo{display:none}
+	.hero-logo{width:260px;max-width:60%;height:auto;display:block;margin:0 auto 14px;opacity:0;transform:translateY(-6px) scale(.98);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.9,.2,1)}
+	.hero-logo.show{opacity:1;transform:none}
 	.hero-title{font-size:2rem;margin:0 0 12px}
 	.hero-sub{color:var(--muted);margin:0 0 18px}
 	.btn{display:inline-block;background:linear-gradient(90deg,var(--magenta),var(--violet));color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none;box-shadow:0 8px 28px rgba(154,36,255,0.12);transition:transform .18s ease}

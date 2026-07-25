@@ -71,4 +71,44 @@ document.addEventListener('DOMContentLoaded', ()=>{
 		}, {threshold:0.05});
 		if(hero) heroObs.observe(hero);
 	}
+
+	// Attempt to load a site logo if provided in the project root (logo.png, logo.svg, logo.webp)
+	(function loadHeroLogo(){
+		const imgEl = document.getElementById('heroLogo');
+		if(!imgEl) return;
+		const candidates = ['logo.png','logo.svg','logo.webp','massevents-logo.png','massevents-logo.svg'];
+		let loaded = false;
+		candidates.forEach(src=>{
+			if(loaded) return;
+			const probe = new Image();
+			probe.onload = ()=>{
+				loaded = true;
+				// set hero background using CSS variable so the logo blends into the hero
+				const hero = document.querySelector('.hero');
+				if(hero){
+					hero.classList.add('has-logo');
+					hero.style.setProperty('--hero-logo', `url(${src})`);
+					// apply to pseudo-element via inline style --background image
+					hero.style.backgroundImage = getComputedStyle(hero).backgroundImage; // preserve existing gradients
+					// set the pseudo-element background by injecting the logo url into a style rule on the element
+					hero.style.setProperty('--logo-url', `url(${src})`);
+					// directly set the before background using CSS custom property via style attribute
+					hero.style.setProperty('background-repeat','no-repeat');
+					hero.style.setProperty('background-position','center 28%');
+				}
+				// hide the inline image to avoid square display; keep src for favicon already set
+				imgEl.src = src;
+				imgEl.classList.remove('show');
+				imgEl.style.display = 'none';
+				// also set the pseudo-element via inline stylesheet for broad support
+				const beforeImage = `linear-gradient(transparent, transparent), url(${src})`;
+				if(hero){ hero.style.setProperty('--hero-before-image', `url(${src})`); hero.style.setProperty('background-image', getComputedStyle(hero).backgroundImage); }
+				// fallback: set documentElement CSS variable for use in CSS
+				document.documentElement.style.setProperty('--site-hero-logo', `url(${src})`);
+			}
+			probe.onerror = ()=>{/* try next */}
+			// start loading
+			probe.src = src;
+		})
+	})();
 })
